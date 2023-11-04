@@ -1,3 +1,5 @@
 #!/bin/bash
 
-helm install my-release oci://registry-1.docker.io/bitnamicharts/rabbitmq
+helm install my-rabbit oci://registry-1.docker.io/bitnamicharts/rabbitmq \
+--set auth.username=user \
+--set auth.password=rabbitmq
