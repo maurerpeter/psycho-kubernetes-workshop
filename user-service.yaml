@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-deployment
+  name: user-deployment
   labels:
-    app: auth
+    app: user
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: auth
+      app: user
   template:
     metadata:
       labels:
-        app: auth
+        app: user
     spec:
       containers:
-      - name: auth
+      - name: user
         image: nginx:1.14.2
         ports:
         - containerPort: 80
@@ -25,13 +25,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service
+  name: user-service
 spec:
   type: NodePort
   selector:
-    app: auth
+    app: user
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 80
-      nodePort: 30001
+      nodePort: 30002
