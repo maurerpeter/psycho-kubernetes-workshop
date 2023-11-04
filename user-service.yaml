@@ -1,3 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-index-html-configmap
+  # namespace: default
+data:
+  index.html: |
+    <html>
+    <h1>User Service</h1>
+    </br>
+    <h1>Welcome</h1>
+    </html>
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,6 +34,17 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-index-file
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: nginx-index-file
+        configMap:
+          name: user-index-html-configmap
+          items:  
+            - key: index.html
+              path: index.html
 
 ---
 
