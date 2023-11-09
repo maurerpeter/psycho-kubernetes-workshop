@@ -17,18 +17,18 @@ spec:
           service:
             name: auth-service
             port:
-              number: 8081
+              number: 80
       - path: /match(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
             name: matching-service
             port:
-              number: 8083
+              number: 80
       - path: /questions(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
             name: user-service
             port:
-              number: 8082              
+              number: 80           

@@ -53,11 +53,11 @@ kind: Service
 metadata:
   name: user-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: user
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 80
-      nodePort: 30002
+      #nodePort: 30002
